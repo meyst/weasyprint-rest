@@ -5,7 +5,7 @@ import os
 import io
 
 from werkzeug.datastructures import FileStorage
-from flask import request, abort, make_response
+from flask import request, abort, make_response, render_template
 from flask_restful import Resource
 
 from ..util import authenticate
@@ -86,9 +86,17 @@ class PrintAPI(Resource):
             "file_name": "document.html"
         })
 
+        payload = _parse_request_argument("payload", None, "file", {
+            "content_type": "text/json",
+            "file_name": "payload.json"
+        })
+
         if html is None:
             return abort(422, description="Required argument 'html' is missing.")
 
+        if payload is not None:
+            html = render_template(html, payload)
+        
         template = _build_template()
 
         printer = WeasyPrinter(html, template=template)
