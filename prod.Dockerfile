@@ -23,6 +23,8 @@ ENV PRODUCTION "true"
 ENV FLASK_ENV=production
 
 WORKDIR /app
+RUN mkdir -p /data/templates
+
 ENTRYPOINT ["/venv/bin/waitress-serve", "--port=5000", "--host=0.0.0.0", "--call" ,"weasyprint_rest:app"]
 
 HEALTHCHECK --start-period=5s --interval=10s --timeout=10s --retries=5 \
