@@ -97,8 +97,8 @@ class PrintAPI(Resource):
             return abort(422, description="Required argument 'html' is missing.")
 
         if payload is not None:
-            environment = Environment()
-            html_template = environment.from_string("<h1>Hello {{name}}!")
+            env = Environment()
+            html_template = env.from_string("<h1>Hello {{name}}!")
             html = html_template.render(name="Stephan")
         
         template = _build_template()
