@@ -79,7 +79,7 @@ class PrintAPI(Resource):
         super(PrintAPI, self).__init__()
 
     def post(self):
-        mode = _parse_request_argument("mode", "pdf")
+        mode = "pdf"
         disposition = _parse_request_argument("disposition", "inline")
         html = _parse_request_argument("html", None, "file", {
             "content_type": "text/html",
@@ -98,12 +98,9 @@ class PrintAPI(Resource):
         response = make_response(content)
         basename, _ = os.path.splitext(html.filename)
         extension = None
-        if mode == "pdf":
-            response.headers['Content-Type'] = 'application/pdf'
-            extension = "pdf"
-        else:
-            response.headers['Content-Type'] = 'image/png'
-            extension = "png"
+        response.headers['Content-Type'] = 'application/pdf'
+        extension = "pdf"
+
 
         response.headers['Content-Disposition'] = '%s; name="%s"; filename="%s.%s"' % (
             disposition,
