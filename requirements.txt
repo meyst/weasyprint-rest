@@ -4,3 +4,4 @@ Flask-CORS
 WeasyPrint
 Werkzeug
 waitress
+Jinja2
