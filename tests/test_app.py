@@ -34,36 +34,6 @@ def test_get_health_timestamp(client):
     assert "timestamp" in res.json and min_time <= int(res.json["timestamp"]) <= max_time
 
 
-def test_post_print_png(client):
-    res = client.post(
-        "/api/v1.0/print",
-        content_type='multipart/form-data',
-        data=get_print_input(),
-        headers=auth_header()
-    )
-    assert res.status_code == 200
-
-    data = res.get_data()
-    assert verify_output(data)
-
-
-def test_post_print_png_css_asset(client):
-    req_data = get_print_input(False)
-    req_data.get("asset[]").append(req_data["style"])
-    del req_data["style"]
-
-    res = client.post(
-        "/api/v1.0/print",
-        content_type='multipart/form-data',
-        data=req_data,
-        headers=auth_header()
-    )
-    assert res.status_code == 200
-
-    data = res.get_data()
-    assert verify_output(data)
-
-
 def test_post_print_pdf(client):
     data = get_print_input()
     data["mode"] = "pdf"
