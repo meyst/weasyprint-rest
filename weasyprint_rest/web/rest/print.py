@@ -8,7 +8,7 @@ from werkzeug.datastructures import FileStorage
 from flask import request, abort, make_response
 from flask_restful import Resource
 
-import Jinja2
+from jinja2 import Environment, FileSystemLoader
 
 from ..util import authenticate
 from ...print.weasyprinter import WeasyPrinter
@@ -97,6 +97,7 @@ class PrintAPI(Resource):
             return abort(422, description="Required argument 'html' is missing.")
 
         if payload is not None:
+            environment = Environment()
             html_template = environment.from_string(html)
             html = html_template.render(payload)
         
