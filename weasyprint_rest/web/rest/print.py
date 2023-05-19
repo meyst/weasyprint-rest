@@ -75,7 +75,6 @@ def _build_template():
         "file_name": "style.css"
     })
     assets = _parse_request_argument("asset[]", [])
-    logging.warn("Asset parse: " . join(assets))
     template_name = _parse_request_argument("template", None)
     base_template = TemplateLoader().get(template_name)
 

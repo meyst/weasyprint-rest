@@ -1,6 +1,7 @@
 import re
 import os
 import mimetypes
+import logging
 
 from weasyprint import CSS, default_url_fetcher
 from weasyprint.text.fonts import FontConfiguration
@@ -18,8 +19,10 @@ class Template:
         self.font_config = FontConfiguration()
 
         if assets is not None:
+            logging.warn("assets is not None.")
             self.assets = {item.filename: item for item in assets}
         else:
+            logging.warn("assets is None.")
             self.assets = {}
 
         if styles is not None:

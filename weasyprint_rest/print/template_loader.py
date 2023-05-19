@@ -36,6 +36,7 @@ class TemplateLoader:
 
         def add_definition(self, base_dir, definition):
             name = definition["name"] if "name" in definition else os.path.basename(base_dir)
+            logging.warn("Template definition name = " . name)
             if name in self.template_definitions:
                 logging.warn(
                     "Template %r found in %r was already defined. This template will be ignored" % (name, base_dir))
