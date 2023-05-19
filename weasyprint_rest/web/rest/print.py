@@ -7,10 +7,8 @@ import json
 import logging
 
 from werkzeug.datastructures import FileStorage
-from flask import request, abort, make_response
+from flask import request, abort, make_response, render_template
 from flask_restful import Resource
-
-from jinja2 import Environment, FileSystemLoader
 
 from ..util import authenticate
 from ...print.weasyprinter import WeasyPrinter
@@ -104,10 +102,9 @@ class PrintAPI(Resource):
             return abort(422, description="Required argument 'html' is missing.")
 
         if payload is not None:
-            env = Environment()
-            html_template = env.from_string(html.read().decode("utf-8"))
+            #html_template = env.from_string(html.read().decode("utf-8"))
             j= json.load(payload)
-            content = html_template.render(j)
+            content = render_template(html,j)
             html = FileStorage(
                 stream=io.BytesIO(bytes(content, encoding='utf8')),
                 filename='document.html', 
