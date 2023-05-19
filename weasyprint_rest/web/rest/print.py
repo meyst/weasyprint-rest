@@ -99,7 +99,7 @@ class PrintAPI(Resource):
         if payload is not None:
             env = Environment()
             html_template = env.from_string(html.read().decode("utf-8"))
-            content = html_template.render(name="Stephan")
+            content = html_template.render(payload.read())
             html = FileStorage(
                 stream=io.BytesIO(bytes(content, encoding='utf8')),
                 filename='filename.html', 
