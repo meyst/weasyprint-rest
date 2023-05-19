@@ -42,4 +42,4 @@ def get_cors_origins():
 
 
 def get_template_directory():
-    return get("TEMPLATE_DIRECTORY", "/data/templates")
+    return get("TEMPLATE_DIRECTORY", "/app/resources")
