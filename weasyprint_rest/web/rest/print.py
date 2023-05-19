@@ -4,6 +4,7 @@
 import os
 import io
 import json
+import logging
 
 from werkzeug.datastructures import FileStorage
 from flask import request, abort, make_response
@@ -22,6 +23,7 @@ def _get_request_list_or_value(request_dict, name):
 
 
 def _get_request_argument(name, default=None):
+    logging.info("def _get_request_argument")
     form = request.form
     args = request.args
     files = request.files
@@ -36,6 +38,7 @@ def _get_request_argument(name, default=None):
 
 
 def _parse_request_argument(name, default=None, parse_type=None, parse_args=None):
+    logging.info("def _parse_request_argument")
     content = _get_request_argument(name, default)
 
     if parse_type == "file" and isinstance(content, str):
@@ -56,6 +59,7 @@ def _parse_request_argument(name, default=None, parse_type=None, parse_args=None
 
 
 def _may_get_dict_value(dict_values, key, default=None):
+    logging.info("def _may_get_dict_value")
     if dict_values is None:
         return default
     if key not in dict_values:

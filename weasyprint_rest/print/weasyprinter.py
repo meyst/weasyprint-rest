@@ -1,5 +1,6 @@
 import os
 import datetime
+import logging
 
 from weasyprint import HTML
 
