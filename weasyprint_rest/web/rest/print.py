@@ -40,6 +40,7 @@ def _get_request_argument(name, default=None):
 def _parse_request_argument(name, default=None, parse_type=None, parse_args=None):
     logging.warn("def _parse_request_argument: name=" + name)
     content = _get_request_argument(name, default)
+    logging.warn("content = " + content)
 
     if parse_type == "file" and isinstance(content, str):
         logging.warn("Parse type is file.")
