@@ -23,7 +23,7 @@ def _get_request_list_or_value(request_dict, name):
 
 
 def _get_request_argument(name, default=None):
-    logging.info("def _get_request_argument")
+    logging.warn("def _get_request_argument")
     form = request.form
     args = request.args
     files = request.files
