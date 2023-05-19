@@ -108,7 +108,7 @@ class PrintAPI(Resource):
             content = html_template.render(j)
             html = FileStorage(
                 stream=io.BytesIO(bytes(content, encoding='utf8')),
-                filename='filename.html', 
+                filename='document.html', 
                 content_type='text/html', 
                 content_length=len(content)
             )
