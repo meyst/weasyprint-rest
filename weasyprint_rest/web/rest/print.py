@@ -42,8 +42,10 @@ def _parse_request_argument(name, default=None, parse_type=None, parse_args=None
     content = _get_request_argument(name, default)
 
     if parse_type == "file" and isinstance(content, str):
+        logging.warn("Parse type is file.")
         content_type = _may_get_dict_value(parse_args, "content_type")
         file_name = _may_get_dict_value(parse_args, "file_name")
+        logging.warn("Filename is " + file_name)
         return FileStorage(
             stream=io.BytesIO(bytes(content, encoding='utf8')),
             filename=file_name,
