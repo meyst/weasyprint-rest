@@ -3,6 +3,7 @@
 
 import os
 import io
+import json
 
 from werkzeug.datastructures import FileStorage
 from flask import request, abort, make_response
@@ -99,8 +100,8 @@ class PrintAPI(Resource):
         if payload is not None:
             env = Environment()
             html_template = env.from_string(html.read().decode("utf-8"))
-            payload_str= payload.read().decode("utf-8")
-            content = html_template.render(payload_str)
+            j= json.load(payload)
+            content = html_template.render(j)
             html = FileStorage(
                 stream=io.BytesIO(bytes(content, encoding='utf8')),
                 filename='filename.html', 
