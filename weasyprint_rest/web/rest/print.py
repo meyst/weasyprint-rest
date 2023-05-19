@@ -98,7 +98,7 @@ class PrintAPI(Resource):
 
         if payload is not None:
             env = Environment()
-            html_template = env.from_string("<h1>Hello {{name}}!")
+            html_template = env(html)
             html.content = html_template.render(name="Stephan")
         
         template = _build_template()

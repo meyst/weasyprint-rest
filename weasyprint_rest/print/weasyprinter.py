@@ -19,8 +19,5 @@ class WeasyPrinter:
         if mode == "pdf":
             return html.write_pdf(stylesheets=styles, image_cache=None, font_config=font_config)
 
-        if mode == "png":
-            return html.write_png(stylesheets=styles, image_cache=None, font_config=font_config)
-
     def close(self):
         pass
